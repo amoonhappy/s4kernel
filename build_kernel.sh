@@ -44,7 +44,7 @@ find -name '*.ko' -exec cp -av {} $RAMFS_TMP/lib/modules/ \;
 /home/jeff/Desktop/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-strip --strip-unneeded $RAMFS_TMP/lib/modules/*
 
 cd $RAMFS_TMP
-/home/jeff/Desktop/work_9500/mkbootfs . | gzip > $RAMFS_TMP.cpio.gz
+/home/jeff/Desktop/work_git/mkbootfs . | gzip > $RAMFS_TMP.cpio.gz
 ls -lh $RAMFS_TMP.cpio.gz
 cd -
 
