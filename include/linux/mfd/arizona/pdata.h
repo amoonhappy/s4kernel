@@ -81,131 +81,135 @@
 struct regulator_init_data;
 
 struct arizona_micbias {
-	int mV;                    /** Regulated voltage */
-	unsigned int ext_cap:1;    /** External capacitor fitted */
-	unsigned int discharge:1;  /** Actively discharge */
-	unsigned int fast_start:1; /** Enable aggressive startup ramp rate */
-	unsigned int bypass:1;     /** Use bypass mode */
+  int mV;                    /** Regulated voltage */
+  unsigned int ext_cap:1;    /** External capacitor fitted */
+  unsigned int discharge:1;  /** Actively discharge */
+  unsigned int fast_start:1; /** Enable aggressive startup ramp rate */
+  unsigned int bypass:1;     /** Use bypass mode */
 };
 
 struct arizona_micd_config {
-	unsigned int src;
-	unsigned int bias;
-	bool gpio;
+  unsigned int src;
+  unsigned int bias;
+  bool gpio;
 };
 
 struct arizona_micd_range {
-	int max;  /** Ohms */
-	int key;  /** Key to report to input layer */
+  int max;  /** Ohms */
+  int key;  /** Key to report to input layer */
 };
 
 struct arizona_pdata {
-	int reset;      /** GPIO controlling /RESET, if any */
-	int ldoena;     /** GPIO controlling LODENA, if any */
+  int reset;      /** GPIO controlling /RESET, if any */
+  int ldoena;     /** GPIO controlling LODENA, if any */
 
-	/** Regulator configuration for MICVDD */
-	struct regulator_init_data *micvdd;
+  /** Regulator configuration for MICVDD */
+  struct regulator_init_data *micvdd;
 
-	/** Regulator configuration for LDO1 */
-	struct regulator_init_data *ldo1;
+  /** Regulator configuration for LDO1 */
+  struct regulator_init_data *ldo1;
 
-	/** Time for control bus to stabalise (ms) */
-	int control_init_time;
+  /** Time for control bus to stabalise (ms) */
+  int control_init_time;
 
-	/** If a direct 32kHz clock is provided on an MCLK specify it here */
-	int clk32k_src;
+  /** If a direct 32kHz clock is provided on an MCLK specify it here */
+  int clk32k_src;
 
-	bool irq_active_high; /** IRQ polarity */
+  /** Mode for primary IRQ (defaults to active low) */
+  unsigned int irq_flags;
 
-	/* Base GPIO */
-	int gpio_base;
+  /* Base GPIO */
+  int gpio_base;
 
-	/** Pin state for GPIO pins */
-	int gpio_defaults[ARIZONA_MAX_GPIO];
+  /** Pin state for GPIO pins */
+  int gpio_defaults[ARIZONA_MAX_GPIO];
 
-	/** GPIO5 is used for jack detection */
-	bool jd_gpio5;
+  /** GPIO5 is used for jack detection */
+  bool jd_gpio5;
 
-	/** Internal pull on GPIO5 is disabled when used for jack detection */
-	bool jd_gpio5_nopull;
+  /** Internal pull on GPIO5 is disabled when used for jack detection */
+  bool jd_gpio5_nopull;
 
-	/** Use the headphone detect circuit to identify the accessory */
-	bool hpdet_acc_id;
+  /** Use the headphone detect circuit to identify the accessory */
+  bool hpdet_acc_id;
 
-	/** Check for line output with HPDET method */
-	bool hpdet_acc_id_line;
+  /** Check for line output with HPDET method */
+  bool hpdet_acc_id_line;
 
-	/** GPIO used for mic isolation with HPDET */
-	int hpdet_id_gpio;
+  /** GPIO used for mic isolation with HPDET */
+  int hpdet_id_gpio;
 
-	/** Callback notifying HPDET result */
-	void (*hpdet_cb)(unsigned int measurement);
+  /** Callback notifying HPDET result */
+  void (*hpdet_cb)(unsigned int measurement);
 
-	/** Extra debounce timeout used during initial mic detection (ms) */
-	int micd_detect_debounce;
+  /** Extra debounce timeout used during initial mic detection (ms) */
+  int micd_detect_debounce;
 
-	/** GPIO for mic detection polarity */
-	int micd_pol_gpio;
+  /** GPIO for mic detection polarity */
+  int micd_pol_gpio;
 
-	/** Mic detect ramp rate */
-	int micd_bias_start_time;
+  /** Mic detect ramp rate */
+  int micd_bias_start_time;
 
-	/** Mic detect sample rate */
-	int micd_rate;
+  /** Mic detect sample rate */
+  int micd_rate;
 
-	/** Mic detect debounce level */
-	int micd_dbtime;
+  /** Mic detect debounce level */
+  int micd_dbtime;
 
-	/** Mic detect timeout (ms) */
-	int micd_timeout;
+  /** Mic detect timeout (ms) */
+  int micd_timeout;
 
-	/** Force MICBIAS on for mic detect */
-	bool micd_force_micbias;
+  /** Force MICBIAS on for mic detect */
+  bool micd_force_micbias;
 
-	/** Mic detect level parameters */
-	const struct arizona_micd_range *micd_ranges;
-	int num_micd_ranges;
+  /** Mic detect level parameters */
+  const struct arizona_micd_range *micd_ranges;
+  int num_micd_ranges;
 
-	/** Headset polarity configurations */
-	struct arizona_micd_config *micd_configs;
-	int num_micd_configs;
+  /** Headset polarity configurations */
+  struct arizona_micd_config *micd_configs;
+  int num_micd_configs;
 
-	/** Reference voltage for DMIC inputs */
-	int dmic_ref[ARIZONA_MAX_INPUT];
+  /** Reference voltage for DMIC inputs */
+  int dmic_ref[ARIZONA_MAX_INPUT];
 
-	/** MICBIAS configurations */
-	struct arizona_micbias micbias[ARIZONA_MAX_MICBIAS];
+  /** MICBIAS configurations */
+  struct arizona_micbias micbias[ARIZONA_MAX_MICBIAS];
 
-	/** Mode of input structures */
-	int inmode[ARIZONA_MAX_INPUT];
+  /** Mode of input structures */
+  int inmode[ARIZONA_MAX_INPUT];
 
-	/** Mode for outputs */
-	bool out_mono[ARIZONA_MAX_OUTPUT];
+  /** Mode for outputs */
+  bool out_mono[ARIZONA_MAX_OUTPUT];
 
-	/** PDM speaker mute setting */
-	unsigned int spk_mute[ARIZONA_MAX_PDM_SPK];
+  /** PDM speaker mute setting */
+  unsigned int spk_mute[ARIZONA_MAX_PDM_SPK];
 
-	/** PDM speaker format */
-	unsigned int spk_fmt[ARIZONA_MAX_PDM_SPK];
+  /** PDM speaker format */
+  unsigned int spk_fmt[ARIZONA_MAX_PDM_SPK];
 
-	/** IRQ base */
-	int irq_base;
+  /** IRQ base */
+  int irq_base;
 
-	/** Haptic actuator type */
-	unsigned int hap_act;
+  /** Haptic actuator type */
+  unsigned int hap_act;
 
-	/** Extra microphone clamping enabled by speaker driver? */
-	unsigned int mic_spk_clamp;
+  /** Extra microphone clamping enabled by speaker driver? */
+  unsigned int mic_spk_clamp;
 
-	/**
-	 * Maximum number of channels clocks will be generated for,
-	 * useful for systems where and I2S bus with multiple data
-	 * lines is mastered.
-	 */
-	int max_channels_clocked[ARIZONA_MAX_AIF];
+  /**
+   * Maximum number of channels clocks will be generated for,
+   * useful for systems where and I2S bus with multiple data
+   * lines is mastered.
+   */
+  int max_channels_clocked[ARIZONA_MAX_AIF];
 
-	/** Callback run at the end of mfd probe() */
-	void (*init_done)(void);
+  /** Callback run at the end of mfd probe() */
+  void (*init_done)(void);
+
+  /** GPIO for primary IRQ (used for edge triggered emulation) */
+  int irq_gpio;
 };
 
 #endif

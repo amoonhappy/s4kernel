@@ -96,8 +96,6 @@ source "drivers/memstick/Kconfig"
 
 source "drivers/leds/Kconfig"
 
-source "drivers/switch/Kconfig"
-
 source "drivers/accessibility/Kconfig"
 
 source "drivers/infiniband/Kconfig"
@@ -157,5 +155,7 @@ source "drivers/accessory/Kconfig"
 source "drivers/ice4_fpga/Kconfig"
 
 source "drivers/felica/Kconfig"
+
+source "drivers/switch/Kconfig"
 
 endmenu

@@ -21,53 +21,58 @@
 struct regulator;
 
 struct wm_adsp_region {
-	int type;
-	unsigned int base;
+  int type;
+  unsigned int base;
 };
 
 struct wm_adsp_alg_region {
-	struct list_head list;
-	unsigned int alg;
-	int type;
-	unsigned int base;
+  struct list_head list;
+  unsigned int alg;
+  int type;
+  unsigned int base;
+  size_t len;
 };
 
 struct wm_adsp {
-	const char *part;
-	int num;
-	int type;
-	struct device *dev;
-	struct regmap *regmap;
+  const char *part;
+  int num;
+  int type;
+  struct device *dev;
+  struct regmap *regmap;
 
-	int base;
+  int base;
 
-	struct list_head alg_regions;
+  struct list_head alg_regions;
 
-	const struct wm_adsp_region *mem;
-	int num_mems;
+  int fw_id;
 
-	int fw;
-	bool running;
+  const struct wm_adsp_region *mem;
+  int num_mems;
 
-	struct regulator *dvfs;
+  int fw;
+  bool running;
+
+  struct regulator *dvfs;
+
+  struct wm_coeff *wm_coeff;
 };
 
 #define WM_ADSP1(wname, num) \
-	{ .id = snd_soc_dapm_pga, .name = wname, .reg = SND_SOC_NOPM, \
-	.shift = num, .event = wm_adsp1_event, \
-	.event_flags = SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD }
+  { .id = snd_soc_dapm_pga, .name = wname, .reg = SND_SOC_NOPM, \
+  .shift = num, .event = wm_adsp1_event, \
+  .event_flags = SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD }
 
 #define WM_ADSP2(wname, num) \
-{	.id = snd_soc_dapm_pga, .name = wname, .reg = SND_SOC_NOPM, \
-	.shift = num, .event = wm_adsp2_event, \
-	.event_flags = SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD }
+{  .id = snd_soc_dapm_pga, .name = wname, .reg = SND_SOC_NOPM, \
+  .shift = num, .event = wm_adsp2_event, \
+  .event_flags = SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD }
 
 extern const struct snd_kcontrol_new wm_adsp_fw_controls[];
 
 int wm_adsp2_init(struct wm_adsp *adsp, bool dvfs);
 int wm_adsp1_event(struct snd_soc_dapm_widget *w,
-		   struct snd_kcontrol *kcontrol, int event);
+       struct snd_kcontrol *kcontrol, int event);
 int wm_adsp2_event(struct snd_soc_dapm_widget *w,
-		   struct snd_kcontrol *kcontrol, int event);
+       struct snd_kcontrol *kcontrol, int event);
 
 #endif
