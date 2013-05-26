@@ -1,6 +1,6 @@
-This is a personal usage repository for Galaxy S4 Kernel customization by Amoonhappy.
+This is a personal usage repository for Galaxy S4 Kernel customization by Amoonhappy.<br>
 
-Implemented enhancements:
+Implemented enhancements:<br>
 1. 64G exFAT sdcard support
 2. USB charger speed increase from 600mA to 800mA
 3. Disable some debug
