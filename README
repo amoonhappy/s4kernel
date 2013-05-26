@@ -14,6 +14,7 @@ Implemented enhancements:
 11.enable dynamic CPU hotplug
 12.enable arizona haptics
 13.enable USB OTG
+14.Wifi drivers modified to allow only unicast and mDNS traffic through, this should fix battery draining on dirty networks. (Thanks to AndreiLux)
 
 Todo:
 1. battery drain testing for 10-11
