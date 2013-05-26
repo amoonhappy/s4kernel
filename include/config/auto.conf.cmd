@@ -88,6 +88,7 @@ deps_config := \
 	fs/ext3/Kconfig \
 	fs/ext2/Kconfig \
 	fs/Kconfig \
+	drivers/switch/Kconfig \
 	drivers/felica/Kconfig \
 	drivers/ice4_fpga/Kconfig \
 	drivers/accessory/Kconfig \
@@ -212,7 +213,6 @@ deps_config := \
 	drivers/infiniband/hw/mthca/Kconfig \
 	drivers/infiniband/Kconfig \
 	drivers/accessibility/Kconfig \
-	drivers/switch/Kconfig \
 	drivers/leds/Kconfig \
 	drivers/memstick/host/Kconfig \
 	drivers/memstick/core/Kconfig \
