@@ -15,6 +15,7 @@ Implemented enhancements:
 12.enable arizona haptics
 13.enable USB OTG
 
+
 Todo:
 1. battery drain testing for 10-11
 2. init.d support
