@@ -478,9 +478,9 @@ static const unsigned int exynos5410_max_op_freq_b_evt1[NR_CPUS + 1] = {
 
 static const unsigned int exynos5410_max_op_freq_b_evt2[NR_CPUS + 1] = {
 	UINT_MAX,
-	1600000,
-	1600000,
-	1600000,
+	1700000,
+	1700000,
+	1700000,
 	1600000,
 };
 #endif
@@ -738,10 +738,10 @@ static void exynos5410_set_frequency_CA15(unsigned int old_index,
 	unsigned int tmp;
 
 	if (old_index > new_index) {
-		if (new_index == L4)
-		{
-			new_index = L3;
-		}		
+		//if (new_index == L4)
+		//{
+		//	new_index = L3;
+		//}		
 		/* Before change clock rate, lock INT clock to garantee INT LVcc */
 		if ((old_index > L2) && (new_index <= L2)) {
 			if (pm_qos_request_active(&exynos5_cpu_int_qos))
